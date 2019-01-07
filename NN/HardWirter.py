@@ -12,7 +12,7 @@ X = digits.data
 y = digits.target
 X -= X.min()  # normalize the values to bring them into the range 0-1
 X /= X.max()
-
+print(len(X))
 nn = NeuralNetwork([64, 100, 10], 'logistic') # load network
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 labels_train = LabelBinarizer().fit_transform(y_train)
@@ -24,4 +24,5 @@ for i in range(X_test.shape[0]):
     o = nn.predict(X_test[i])
     predictions.append(np.argmax(o))
 print(confusion_matrix(y_test, predictions))
-print('end')
+print(classification_report(y_test, predictions))
+# print('end')
